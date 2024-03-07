@@ -30,6 +30,7 @@ pandas = "^2"
 docutils = {version = "0.20.1", optional = true}
 jupyter-book = {version = ">=1,<2", optional = true}
 datasets = "^2.18.0"
+tiktoken = "^0.6.0"
 
 [tool.poetry.dev-dependencies]
 
