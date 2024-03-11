@@ -47,7 +47,7 @@ def consolidate(split):
 
     # Save the lang_codes
     with open(processed_dir / f"lang_codes.txt", "w") as f:
-        for lang_code in lang_codes:
+        for lang_code in sorted(lang_codes):
             f.write(f"{lang_code}\n")
 
     # Copy the metadata
