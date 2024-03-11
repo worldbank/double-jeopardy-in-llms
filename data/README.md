@@ -23,17 +23,17 @@ Difference in languages between FLORES200 and FLORES+:
 
 ```python
 delta_langs = [
-    'brx_Deva',
-    'chv_Cyrl',
+    # 'brx_Deva',
+    # 'chv_Cyrl',
     'cmn_Hans',
     'cmn_Hant',
-    'dgo_Deva',
+    # 'dgo_Deva',
     'fil_Latn',
-    'gom_Deva',
-    'mhr_Cyrl',
-    'mni_Mtei',
+    # 'gom_Deva',
+    # 'mhr_Cyrl',
+    # 'mni_Mtei',
     'nqo_Nkoo',
-    'snd_Deva',
+    # 'snd_Deva',
     'zgh_Tfng',
 ]
  ```
