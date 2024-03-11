@@ -73,19 +73,17 @@ _LANGUAGES = [
 "bak_Cyrl",  "dyu_Latn",  "heb_Hebr",  "khk_Cyrl",	"lvs_Latn",  "pan_Guru",  "som_Latn",  "tum_Latn"
 ]
 
-_URL = "https://tinyurl.com/flores200dataset"
-
 _SPLITS = ["dev", "devtest"]
 
 _SENTENCES_PATHS = {
     lang: {
-        split: os.path.join("flores200_dataset", split, f"{lang}.{split}")
+        split: os.path.join("flores200p_dataset", split, f"{lang}.{split}")
         for split in _SPLITS
     } for lang in _LANGUAGES
 }
 
 _METADATA_PATHS = {
-    split: os.path.join("flores200_dataset", f"metadata_{split}.tsv")
+    split: os.path.join("flores200p_dataset", f"metadata_{split}.tsv")
     for split in _SPLITS
 }
 
@@ -99,8 +97,8 @@ def _pairings(iterable, r=2):
             yield p
 
 
-class Flores200Config(datasets.BuilderConfig):
-    """BuilderConfig for the FLORES-200 dataset."""
+class Flores200PConfig(datasets.BuilderConfig):
+    """BuilderConfig for the FLORES-200P dataset."""
     def __init__(self, lang: str, lang2: str = None, **kwargs):
         """
         Args:
@@ -111,26 +109,26 @@ class Flores200Config(datasets.BuilderConfig):
         self.lang2 = lang2
 
 
-class Flores200(datasets.GeneratorBasedBuilder):
-    """FLORES-200 dataset."""
+class Flores200P(datasets.GeneratorBasedBuilder):
+    """FLORES-200P dataset."""
 
     BUILDER_CONFIGS = [
-        Flores200Config(
+        Flores200PConfig(
             name=lang,
-            description=f"FLORES-200: {lang} subset.",
+            description=f"FLORES-200P: {lang} subset.",
             lang=lang
         )
         for lang in _LANGUAGES
     ] +  [
-        Flores200Config(
+        Flores200PConfig(
             name="all",
-            description=f"FLORES-200: all language pairs",
+            description=f"FLORES-200P: all language pairs",
             lang=None
         )
     ] +  [
-        Flores200Config(
+        Flores200PConfig(
             name=f"{l1}-{l2}",
-            description=f"FLORES-200: {l1}-{l2} aligned subset.",
+            description=f"FLORES-200P: {l1}-{l2} aligned subset.",
             lang=l1,
             lang2=l2
         ) for (l1,l2) in _pairings(_LANGUAGES)
@@ -162,7 +160,7 @@ class Flores200(datasets.GeneratorBasedBuilder):
         )
 
     def _split_generators(self, dl_manager):
-        dl_dir = dl_manager.download_and_extract(_URL)
+        dl_dir = self.base_path
 
         def _get_sentence_paths(split):
             if isinstance(self.config.lang, str) and isinstance(self.config.lang2, str):
