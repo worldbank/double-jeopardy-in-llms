@@ -19,4 +19,21 @@ Language reference:
 - FLORES+: https://github.com/openlanguagedata/flores
 
 
+Difference in languages between FLORES200 and FLORES+:
 
+```python
+delta_langs = [
+    'brx_Deva',
+    'chv_Cyrl',
+    'cmn_Hans',
+    'cmn_Hant',
+    'dgo_Deva',
+    'fil_Latn',
+    'gom_Deva',
+    'mhr_Cyrl',
+    'mni_Mtei',
+    'nqo_Nkoo',
+    'snd_Deva',
+    'zgh_Tfng',
+]
+ ```
