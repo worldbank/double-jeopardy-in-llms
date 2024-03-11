@@ -9,7 +9,7 @@ FP_DIRNAME = "floresp-v2.0-rc.1"
 # We want to consolidate the FLORES+ and FLORES200 datasets into a single directory.
 
 raw_dir = Path('data/raw/')
-processed_dir = Path('data/processed/')
+processed_dir = Path('data/processed/flores200p_dataset')
 processed_dir.mkdir(exist_ok=True, parents=True)
 
 
