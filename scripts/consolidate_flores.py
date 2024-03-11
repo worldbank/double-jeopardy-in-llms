@@ -50,6 +50,9 @@ def consolidate(split):
         for lang_code in lang_codes:
             f.write(f"{lang_code}\n")
 
+    # Copy the metadata
+    shutil.copy(raw_dir / F200_DIRNAME / f"metadata_{split}.tsv", target_dir / f"metadata_{split}.tsv")
+
 
 if __name__ == "__main__":
     # poetry run python -m scripts.consolidate_flores --split=dev
