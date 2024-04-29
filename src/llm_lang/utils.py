@@ -1,7 +1,8 @@
+import datasets
 import pandas as pd
 import tiktoken
+
 from .external import flores
-import datasets
 
 
 def get_dataset(lang: str, lang2: str = None, split: str = "dev"):
@@ -43,7 +44,12 @@ def get_data_column(ds: datasets.arrow_dataset.Dataset, lang: str):
     return ds[f"sentence_{lang}"]
 
 
-def get_tokens(ds: datasets.arrow_dataset.Dataset, lang: str, tokenizer=None, model_name: str = None):
+def get_tokens(
+    ds: datasets.arrow_dataset.Dataset,
+    lang: str,
+    tokenizer=None,
+    model_name: str = None,
+):
     if tokenizer:
         assert model_name is None, "Either tokenizer or model_name must be provided"
     else:
@@ -54,7 +60,9 @@ def get_tokens(ds: datasets.arrow_dataset.Dataset, lang: str, tokenizer=None, mo
     return tokenizer.encode_batch(get_data_column(ds, lang))
 
 
-def get_token_stats(ds: datasets.arrow_dataset.Dataset, lang: str, model_name: str = None):
+def get_token_stats(
+    ds: datasets.arrow_dataset.Dataset, lang: str, model_name: str = None
+):
     """Get token statistics for the given language.
 
     Args:
@@ -71,13 +79,38 @@ def get_token_stats(ds: datasets.arrow_dataset.Dataset, lang: str, model_name: s
     token_stats = pd.Series(n_tokens).describe()
     token_stats.index = [f"n_tokens_{i}" for i in token_stats.index]
 
-    token_stats = {
-        "lang": lang,
-        "model_name": model_name,
-        **token_stats.to_dict()}
+    token_stats = {"lang": lang, "model_name": model_name, **token_stats.to_dict()}
 
     token_stats["n_tokens"] = n_tokens
     token_stats["str_len"] = list(map(len, get_data_column(ds, lang)))
-    token_stats["nbytes"] = list(map(lambda s: len(s.encode("utf-8")), get_data_column(ds, lang)))
+    token_stats["nbytes"] = list(
+        map(lambda s: len(s.encode("utf-8")), get_data_column(ds, lang))
+    )
 
     return token_stats
+
+
+def compute_premium(input: str, encoding: str = "cl100k_base") -> int:
+    """
+    Calculate the premium based on the input string and encoding.
+
+    Parameters
+    ----------
+    input : str
+        The input string for which premium needs to be calculated.
+    encoding : str, optional
+        The encoding method to be used (default is "cl100k_base").
+
+    Returns
+    -------
+    int
+        The premium calculated based on the input string and encoding.
+
+    Notes
+    -----
+    This function calculates the premium by encoding the input string using the specified encoding
+    method and returning the length of the resulting tokens.
+    """
+
+    tokens = tiktoken.get_encoding(encoding).encode(input)
+    return len(tokens)
