@@ -1,7 +1,11 @@
 import httpx
 import pandas as pd
+import joblib
+
+mem = joblib.Memory(location='/tmp', verbose=0)
 
 
+@mem.cache
 def fetch_gdp_per_capita(country_code, year=2022):
     """
     Fetches the GDP per capita for a given country and year.

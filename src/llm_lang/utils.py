@@ -2,7 +2,35 @@ import datasets
 import pandas as pd
 import tiktoken
 
+from transformers import AutoTokenizer, PreTrainedTokenizerBase
 from .external import flores
+
+
+def get_tokenizer(model_name: str):
+    """Get the tokenizer corresponding to the provided tiktoken encoding or
+    huggingface model name.
+
+    Args:
+        model_name : str, optional
+            The encoding method to be used (default is "cl100k_base").
+            This can be a tiktoken encoding or a name for a huggingface
+            tokenizer (e.g., bigscience/bloom-560m).
+
+    Returns:
+        Tokenizer: An instance of the specific tokenizer.
+    """
+
+    try:
+        model_name = tiktoken.encoding_for_model(model_name)
+    except KeyError:
+        pass
+
+    try:
+        tokenizer = tiktoken.get_encoding(model_name)
+    except ValueError:
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+    return tokenizer
 
 
 def get_dataset(lang: str, lang2: str = None, split: str = "dev"):
@@ -54,10 +82,13 @@ def get_tokens(
         assert model_name is None, "Either tokenizer or model_name must be provided"
     else:
         assert model_name, "Either tokenizer or model_name must be provided"
-        tokenizer = tiktoken.encoding_for_model(model_name)
+        tokenizer = get_tokenizer(model_name)
 
-    # We can do encode_batch, but I don't think it's necessary.
-    return tokenizer.encode_batch(get_data_column(ds, lang))
+    if isinstance(tokenizer, PreTrainedTokenizerBase):
+        return tokenizer.encode(get_data_column(ds, lang))
+    else:
+        # We can do encode_batch here for the tiktoken tokenizer.
+        return tokenizer.encode_batch(get_data_column(ds, lang))
 
 
 def get_token_stats(
@@ -100,6 +131,8 @@ def compute_premium(input: str, encoding: str = "cl100k_base") -> int:
         The input string for which premium needs to be calculated.
     encoding : str, optional
         The encoding method to be used (default is "cl100k_base").
+        This can be a tiktoken encoding or a name for a huggingface
+        tokenizer (e.g., bigscience/bloom-560m).
 
     Returns
     -------
@@ -112,5 +145,6 @@ def compute_premium(input: str, encoding: str = "cl100k_base") -> int:
     method and returning the length of the resulting tokens.
     """
 
-    tokens = tiktoken.get_encoding(encoding).encode(input)
+    tokens = get_tokenizer(encoding).encode(input)
+
     return len(tokens)

@@ -37,6 +37,10 @@ tokenizers = "^0.15.2"
 ipykernel = "^6.29.4"
 transformers = "^4.39.2"
 torch = "^2.2.2"
+plotly = "^5.21.0"
+httpx = "^0.27.0"
+joblib = "^1.4.0"
+nbformat = ">=4.2.0"
 
 [tool.poetry.dev-dependencies]
 
