@@ -19,16 +19,18 @@ def get_tokenizer(model_name: str):
     Returns:
         Tokenizer: An instance of the specific tokenizer.
     """
+    tokenizer = None
 
     try:
-        model_name = tiktoken.encoding_for_model(model_name)
+        tokenizer = tiktoken.encoding_for_model(model_name)
     except KeyError:
         pass
 
-    try:
-        tokenizer = tiktoken.get_encoding(model_name)
-    except ValueError:
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
+    if tokenizer is None:
+        try:
+            tokenizer = tiktoken.get_encoding(model_name)
+        except ValueError:
+            tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     return tokenizer
 
