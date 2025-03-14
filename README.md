@@ -30,6 +30,22 @@ This section provides a listing and brief description of the code used in the pa
 - `notebooks/`: This folder contains the notebooks used to generate the data and analyze the results.
 - `reports/`: This folder contains assets for the paper. Currently, it contains the figures generated for the paper.
 
+## Citation
+
+Please cite our paper as follows when referencing this work.
+
+``` bibtex
+@misc{solatorio2024doublejeopardyclimateimpact,
+      title={Double Jeopardy and Climate Impact in the Use of Large Language Models: Socio-economic Disparities and Reduced Utility for Non-English Speakers},
+      author={Aivin V. Solatorio and Gabriel Stefanini Vicente and Holly Krambeck and Olivier Dupriez},
+      year={2024},
+      eprint={2410.10665},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2410.10665},
+}
+```
+
 ## Code of Conduct
 
 The <span style="color:#3EACAD">template</span> maintains a [Code of Conduct](docs/CODE_OF_CONDUCT.md) to ensure an inclusive and respectful environment for everyone. Please adhere to it in all interactions within our community.
@@ -37,3 +53,4 @@ The <span style="color:#3EACAD">template</span> maintains a [Code of Conduct](do
 ## License
 
 The <span style="color:#3EACAD">template</span> is licensed under the [**Mozilla Public License**](https://www.mozilla.org/en-US/MPL). Remember to replace the [license](LICENSE) if necessary. If open source, [choose an open source license](https://choosealicense.com).
+
