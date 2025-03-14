@@ -3,6 +3,9 @@
 This work investigates the socio-economic disparities and reduced utility for non-English speakers in the use of large language models (LLMs). We use the FLORES-200 dataset and Ethnologue to analyze the socio-economic disparities in the use of LLMs. We also use the OpenAI's GPT-4 API to assess the reduced utility of LLMsfor non-English speakers.
 
 <br>
+<p align="center">
+<img src="./reports/cl100k_base_50K_annotation.png" style="width:75%"/>
+</p>
 <br>
 <p align="center">
 <img src="./reports/double-jeopardy-llm.png" style="width:75%"/>
@@ -14,25 +17,25 @@ This work investigates the socio-economic disparities and reduced utility for no
 </p>
 <br>
 
-
-## Data sources
+## Data sources and APIs
 
 This section provides an overview of the datasets and APIs used in the paper.
 
-- FLORES-200 and FLORES+: A multilingual dataset covering 100 languages, with 1,000 sentences per language. Used for evaluating translation quality and computing the tokenization premium relative to English.
-- Ethnologue: Provides linguistic data, including the number of speakers, geographic distribution, and writing systems. We use Ethnologue to estimate the number of speakers for each language.
-- World Development Indicators (WDI): Contains socio-economic data at the country level. Specifically, we use the GDP per capita in current US\$ (NY.GDP.PCAP.CD) and the annual population growth rates (SP.POP.GROW) indicators to compute the population-weighted GDP for each language and for aligning population estimates to 2022 based on historical figures from Ethnologue.
-- OpenAI GPT-4o and GTP-4 Turbo APIs: Used to assess the reduced utility of LLMs for non-English speakers. We applied translation with different prompting methods to generate reference translations for FLORES sentences. The LLM translated non-English sentences into English, with the original English sentences serving as a benchmark for evaluating translation quality.
+- [FLORES-200 and FLORES+](https://github.com/facebookresearch/flores): A multilingual dataset covering 100 languages, with 1,000 sentences per language. Used for evaluating translation quality and computing the tokenization premium relative to English.
+- [Ethnologue](https://www.ethnologue.com/): Provides linguistic data, including the number of speakers, geographic distribution, and writing systems. We use Ethnologue to estimate the number of speakers for each language.
+- [World Development Indicators (WDI)](https://datacatalog.worldbank.org/dataset/world-development-indicators): Contains socio-economic data at the country level. Specifically, we use the GDP per capita in current US\$ (NY.GDP.PCAP.CD) and the annual population growth rates (SP.POP.GROW) indicators to compute the population-weighted GDP for each language and for aligning population estimates to 2022 based on historical figures from Ethnologue.
+- [OpenAI GPT-4o and GTP-4 Turbo APIs](https://openai.com/api/): Used to assess the reduced utility of LLMs for non-English speakers. We applied translation with different prompting methods to generate reference translations for FLORES sentences. The LLM translated non-English sentences into English, with the original English sentences serving as a benchmark for evaluating translation quality.
 
-## Code
+## Notebooks
 
 This section provides a listing and brief description of the notebooks used to generate inputs for the paper.
 
-- `notebooks/`: This folder contains the notebooks used to generate the data and analyze the results.
-  - `notebooks/compute-premium-costs.ipynb`: Computes the tokenization premium for the FLORES dataset. The calculation of the population-weighted GDP for each language is also done in this notebook.
-  - `notebooks/back-translation-task.ipynb`: Generates the back-translation task for the FLORES dataset. The notebook implements the batched translation strategy for the translation task and uses the OpenAI GPT-4o API.
-  - `notebooks/analysis.ipynb`: Notebook for additional analysis of the results. Key visualizations are generated in this notebook, including the comparison of the tokenization premiums between two different tokenizers (GPT-4o vs. GPT-4 Turbo).
-- `reports/`: This folder contains assets for the paper. Currently, it contains the figures generated for the paper.
+- [`notebooks/`](notebooks/): This folder contains the notebooks used to generate the data and analyze the results.
+  - [`notebooks/compute-premium-costs.ipynb`](notebooks/compute-premium-costs.ipynb): Computes the tokenization premium for the FLORES dataset. The calculation of the population-weighted GDP for each language is also done in this notebook.
+  - [`notebooks/back-translation-task.ipynb`](notebooks/back-translation-task.ipynb): Generates the back-translation task for the FLORES dataset. The notebook implements the batched translation strategy for the translation task and uses the OpenAI GPT-4o API.
+  - [`notebooks/analysis.ipynb`](notebooks/analysis.ipynb): Notebook for additional analysis of the results. Key visualizations are generated in this notebook, including the comparison of the tokenization premiums between two different tokenizers (GPT-4o vs. GPT-4 Turbo).
+
+Also, in the [`reports/`](reports/) folder, you can find the figures generated for the paper.
 
 ## Running the code
 
@@ -41,6 +44,8 @@ This repository uses poetry to manage dependencies. To install the dependencies,
 ```bash
 poetry install
 ```
+
+To review the list of dependencies, please refer to the [`pyproject.toml`](pyproject.toml) file.
 
 VS Code / Cursor users can use the [Python extension](https://code.visualstudio.com/docs/python/python-tutorial) to run the notebooks.
 
