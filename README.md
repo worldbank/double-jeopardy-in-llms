@@ -14,6 +14,22 @@ This work investigates the socio-economic disparities and reduced utility for no
 </p>
 <br>
 
+## Data sources
+
+This section provides a listing and brief description of the data sources used in the paper.
+
+- FLORES-200 dataset: This dataset contains 100 languages and 1000 sentences for each language.
+- Ethnologue: This dataset contains information about the languages, including the number of speakers, the location of the speakers, and the scripts used.
+- OpenAI's GPT-4 (and Turbo) API: This API was used to assess the reduced utility of LLMs for non-English speakers.
+
+## Code
+
+This section provides a listing and brief description of the code used in the paper.
+
+- `scripts/`: This folder contains the scripts used to generate the data and analyze the results.
+- `notebooks/`: This folder contains the notebooks used to generate the data and analyze the results.
+- `reports/`: This folder contains assets for the paper. Currently, it contains the figures generated for the paper.
+
 ## Code of Conduct
 
 The <span style="color:#3EACAD">template</span> maintains a [Code of Conduct](docs/CODE_OF_CONDUCT.md) to ensure an inclusive and respectful environment for everyone. Please adhere to it in all interactions within our community.
