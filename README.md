@@ -50,6 +50,18 @@ Otherwise, use the following command to spin up a local Jupyter server:
 poetry run jupyter notebook
 ```
 
+It is recommended to use a virtual environment to run the code.
+
+Additionaly, the `notebooks/compute-premium-costs.ipynb` notebook uses the OpenAI API. To use the API, you need to set the `OPENAI_API_KEY` environment variable. You can create a `.env` file in the root of the repository and add the following:
+
+```
+OPENAI_API_KEY=<your-openai-api-key>
+```
+
+## Computational resources
+
+This work has been developed using a MacBook Pro with an M1 Pro processor and 64GB of RAM. No GPU is needed for the computations. Access to the OpenAI API is required.
+
 ## Notes
 
 Some of the notebooks are not publically available because they are used to handle proprietary data from Ethnologue which is not publicly available. One of the notebooks is used to compute the adjusted population based on the historical figures from Ethnologue and the annual population growth rates.
