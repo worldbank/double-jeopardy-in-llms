@@ -28,12 +28,12 @@ This section provides an overview of the datasets and APIs used in the paper.
 
 This section provides a listing and brief description of the notebooks used to generate inputs for the paper.
 
-- `notebooks/`: This folder contains the notebooks used to generate the data and analyze the results.
-  - `notebooks/compute-premium-costs.ipynb`: Computes the tokenization premium for the FLORES dataset. The calculation of the population-weighted GDP for each language is also done in this notebook.
-  - `notebooks/back-translation-task.ipynb`: Generates the back-translation task for the FLORES dataset. The notebook implements the batched translation strategy for the translation task and uses the OpenAI GPT-4o API.
-  - `notebooks/analysis.ipynb`: Notebook for additional analysis of the results. Key visualizations are generated in this notebook, including the comparison of the tokenization premiums between two different tokenizers (GPT-4o vs. GPT-4 Turbo).
+- [`notebooks/`](notebooks/): This folder contains the notebooks used to generate the data and analyze the results.
+  - [`notebooks/compute-premium-costs.ipynb`](notebooks/compute-premium-costs.ipynb): Computes the tokenization premium for the FLORES dataset. The calculation of the population-weighted GDP for each language is also done in this notebook.
+  - [`notebooks/back-translation-task.ipynb`](notebooks/back-translation-task.ipynb): Generates the back-translation task for the FLORES dataset. The notebook implements the batched translation strategy for the translation task and uses the OpenAI GPT-4o API.
+  - [`notebooks/analysis.ipynb`](notebooks/analysis.ipynb): Notebook for additional analysis of the results. Key visualizations are generated in this notebook, including the comparison of the tokenization premiums between two different tokenizers (GPT-4o vs. GPT-4 Turbo).
 
-Also, in the `reports/` folder, you can find the figures generated for the paper.
+Also, in the [`reports/`](reports/) folder, you can find the figures generated for the paper.
 
 ## Running the code
 
@@ -42,6 +42,8 @@ This repository uses poetry to manage dependencies. To install the dependencies,
 ```bash
 poetry install
 ```
+
+To review the list of dependencies, please refer to the [`pyproject.toml`](pyproject.toml) file.
 
 VS Code / Cursor users can use the [Python extension](https://code.visualstudio.com/docs/python/python-tutorial) to run the notebooks.
 
