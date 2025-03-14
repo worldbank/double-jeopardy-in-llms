@@ -22,15 +22,37 @@ This section provides an overview of the datasets and APIs used in the paper.
 - FLORES-200 and FLORES+: A multilingual dataset covering 100 languages, with 1,000 sentences per language. Used for evaluating translation quality and computing the tokenization premium relative to English.
 - Ethnologue: Provides linguistic data, including the number of speakers, geographic distribution, and writing systems. We use Ethnologue to estimate the number of speakers for each language.
 - World Development Indicators (WDI): Contains socio-economic data at the country level. Specifically, we use the GDP per capita in current US\$ (NY.GDP.PCAP.CD) and the annual population growth rates (SP.POP.GROW) indicators to compute the population-weighted GDP for each language and for aligning population estimates to 2022 based on historical figures from Ethnologue.
-- OpenAI GPT-4 (and Turbo) APIs: Used to assess the reduced utility of LLMs for non-English speakers. We applied back-translation with different prompting methods to generate reference translations for FLORES sentences. The LLM translated non-English sentences into English, with the original English sentences serving as a benchmark for evaluating translation quality.
+- OpenAI GPT-4o and GTP-4 Turbo APIs: Used to assess the reduced utility of LLMs for non-English speakers. We applied translation with different prompting methods to generate reference translations for FLORES sentences. The LLM translated non-English sentences into English, with the original English sentences serving as a benchmark for evaluating translation quality.
 
 ## Code
 
-This section provides a listing and brief description of the code used in the paper.
+This section provides a listing and brief description of the notebooks used to generate inputs for the paper.
 
-- `scripts/`: This folder contains the scripts used to generate the data and analyze the results.
 - `notebooks/`: This folder contains the notebooks used to generate the data and analyze the results.
+  - `notebooks/compute-premium-costs.ipynb`: Computes the tokenization premium for the FLORES dataset. The calculation of the population-weighted GDP for each language is also done in this notebook.
+  - `notebooks/back-translation-task.ipynb`: Generates the back-translation task for the FLORES dataset. The notebook implements the batched translation strategy for the translation task and uses the OpenAI GPT-4o API.
+  - `notebooks/analysis.ipynb`: Notebook for additional analysis of the results. Key visualizations are generated in this notebook, including the comparison of the tokenization premiums between two different tokenizers (GPT-4o vs. GPT-4 Turbo).
 - `reports/`: This folder contains assets for the paper. Currently, it contains the figures generated for the paper.
+
+## Running the code
+
+This repository uses poetry to manage dependencies. To install the dependencies, run the following command:
+
+```bash
+poetry install
+```
+
+VS Code / Cursor users can use the [Python extension](https://code.visualstudio.com/docs/python/python-tutorial) to run the notebooks.
+
+Otherwise, use the following command to spin up a local Jupyter server:
+
+```bash
+poetry run jupyter notebook
+```
+
+## Notes
+
+Some of the notebooks are not publically available because they are used to handle proprietary data from Ethnologue which is not publicly available. One of the notebooks is used to compute the adjusted population based on the historical figures from Ethnologue and the annual population growth rates.
 
 ## Citation
 
