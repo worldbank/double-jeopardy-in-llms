@@ -14,13 +14,15 @@ This work investigates the socio-economic disparities and reduced utility for no
 </p>
 <br>
 
+
 ## Data sources
 
-This section provides a listing and brief description of the data sources used in the paper.
+This section provides an overview of the datasets and APIs used in the paper.
 
-- FLORES-200 dataset: This dataset contains 100 languages and 1000 sentences for each language.
-- Ethnologue: This dataset contains information about the languages, including the number of speakers, the location of the speakers, and the scripts used.
-- OpenAI's GPT-4 (and Turbo) API: This API was used to assess the reduced utility of LLMs for non-English speakers.
+- FLORES-200 and FLORES+: A multilingual dataset covering 100 languages, with 1,000 sentences per language. Used for evaluating translation quality and computing the tokenization premium relative to English.
+- Ethnologue: Provides linguistic data, including the number of speakers, geographic distribution, and writing systems. We use Ethnologue to estimate the number of speakers for each language.
+- World Development Indicators (WDI): Contains socio-economic data at the country level. Specifically, we use the GDP per capita in current US\$ (NY.GDP.PCAP.CD) and the annual population growth rates (SP.POP.GROW) indicators to compute the population-weighted GDP for each language and for aligning population estimates to 2022 based on historical figures from Ethnologue.
+- OpenAI GPT-4 (and Turbo) APIs: Used to assess the reduced utility of LLMs for non-English speakers. We applied back-translation with different prompting methods to generate reference translations for FLORES sentences. The LLM translated non-English sentences into English, with the original English sentences serving as a benchmark for evaluating translation quality.
 
 ## Code
 
